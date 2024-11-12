@@ -15,19 +15,34 @@
 * **AWS Account**: Ensure you have an AWS account with the necessary permissions to create EKS clusters.
 * **AWS Credentials**: Store your AWS access key and secret in `./secrets/credentials.sh`.
 * **Bash Shell**: This script is written for bash; it should be run in a bash-compatible environment.
-* At least one EC2 instance or an aws sandboox needed to be start then cloning the repo and changing the creds under `./secrets/credentials.sh` we run this command to provision the kubernetes cluster on the top of the aws instance :
+* At least one EC2 instance or an aws sandboox needed to be start then cloning the repo and changing the creds under `./secrets/credentials.sh` :
+
+**STEPS**
+1. cloning repo:
+```bash
+git clone https://github.com/0XSIKIPON/AWS-kubernetes-eks-cluster.git
+```
+2. changing credentials under `./secrets/credentials.sh:
+```bash
+export PROFILE="sikipon" # change it if needed 
+export AWS_ACCESS_KEY_ID="aws-access-key-id"
+export AWS_SECRET_ACCESS_KEY="aws-secret-access-key"
+export AWS_DEFAULT_REGION="us-east-1"  # change it if needed
+```
+3. create the cluster:
+
 ```bash
 make eks-cluster
 ```
 After few minutes the cluster will be up 
 
-Check it by running 
+4. Check it by running 
 ```bash
 kubectl get nodes 
 kubectl get pods -n kube-system 
 kubectl get cm 
 ```
-Then once finishing working with the cluster ro clean up, run :
+5. Then once finishing working with the cluster ro clean up, run :
 ```bash
 make delete-cluster 
 ```
